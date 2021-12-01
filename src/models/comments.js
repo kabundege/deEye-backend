@@ -1,4 +1,4 @@
-const { Schema,model } = require("mongoose")
+import { Schema,model } from "mongoose"
 
 const CommentsPayload = {
     story_id: { type:'number', required:true },
@@ -61,4 +61,4 @@ const dummyComments = [
     },
 ]
 
-module.exports = { Comments,dummyComments };
+module.exports = { Comments,CommentsSchema };

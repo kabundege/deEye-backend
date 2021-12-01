@@ -1,4 +1,4 @@
-const { Schema,model } = require("mongoose")
+import { Schema,model } from "mongoose"
 
 const PostsPayload = {
     type: { type:"string", required:true },
@@ -18,7 +18,7 @@ const PostsSchema = new Schema(PostsPayload,{ timestamps:true })
 
 const Posts = model('Posts',PostsSchema)
 
-dummyPosts = [
+const dummyPosts = [
     {
         id: 1,
         image:'https://picsum.photos/200/300',
@@ -92,4 +92,4 @@ dummyPosts = [
     },
 ]
 
-module.exports = { Posts,dummyPosts };
+export default Posts;

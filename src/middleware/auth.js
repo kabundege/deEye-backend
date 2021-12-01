@@ -1,14 +1,21 @@
-const utils = require("../helpers/utils");
-const users = require("../models/user");
+const { setError,send } = require("../helpers/utils");
+const { Users } = require("../models/user");
 
 const authorizationCheck = async (req, res, next) => {
     const phoneNumber  = req.headers.phonenumber;
 
-    const user = users.find( one => one.phoneNumber === phoneNumber );
+    if(!phoneNumber){
+        // return res.status(401).json({ status:401,message:'Un-Authenticated Request' })
+        setError(401, 'Un-Authenticated Request');
+        return send(res);
+    }
+
+    const user = await Users.findOne({ phoneNumber })
 
     if(!user){
-        utils.setError(401, 'Invalid User-Request');
-        return utils.send(res);
+        // return res.status(401).json({ status:401,message:'Un-Authenticated User' })
+        setError(401, 'Un-Authenticated User');
+        return send(res);
     }
 
     req.userData = user;

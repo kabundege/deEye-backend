@@ -1,24 +1,28 @@
-const { setError,setSuccess,send } = require('../helpers/utils');
-const { dummyComments } = require('../models/comments');
-
-const comments = dummyComments;
+import { setError,setSuccess,send } from '../helpers/utils'
+import { Comments } from '../models/comments';
 
 class CommentController {
 
     async GetAllComments(_,res){
-        setSuccess(200,'Fetch Success',posts)
+        const comments = await Comments.find()
+        setSuccess(200,'Fetch Success',comments)
         return send(res)
     }
 
-    async CreateComment(req,res){
-        const payload = {
-            ...req.body,
-            id:posts.length+1,
-            creator_id:req.userData.id,
+    async CreateComment(req,res){        
+        try {
+            /**
+             * Creates a new Payment 
+             * with the payment Schema
+             */
+
+            const newComment = await new Comments(req.body).save();
+            setSuccess(201,'Comment Created Successfuly',newComment)
+            return send(res)
+        }catch(err){
+            setError(500,err.message)
+            return send(res)
         }
-        posts.push(payload);
-        setSuccess(201,'Creating Post Success',payload)
-        return send(res)
     }
 
 }

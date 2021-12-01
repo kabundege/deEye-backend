@@ -1,0 +1,2 @@
+GET http://localhost:2000/posts
+phonenumber: +250784824295

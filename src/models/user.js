@@ -1,8 +1,9 @@
-const { Schema,model } = require("mongoose")
+import { Schema,model } from "mongoose"
 
 const UsersPayload = {
     phoneNumber: { type: 'String', required: true },
-    name: { type:"string", required:true }
+    name: { type:"string", required:true },
+    password: { type:"string",required:true }
 }
 
 const UsersSchema = new Schema(UsersPayload,{ timestamps:true })
@@ -21,4 +22,4 @@ const dummyUsers = [
     },
 ]
 
-module.exports = { Users,dummyUsers };
+module.exports = { Users,UsersSchema };

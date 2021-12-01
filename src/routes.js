@@ -1,28 +1,28 @@
 const express = require('express');
 const { GetAllComments, CreateComment } = require('./controllers/Comment');
-const { CreatePost, GetAllPost, UpdatePost } = require('./controllers/Post');
+const { CreatePost, GetAllPost } = require('./controllers/Post');
 const { Login, SignUp, GetUSer } = require('./controllers/User');
-const { setError,setSuccess,send } = require('./helpers/utils');
 const authorizationCheck = require('./middleware/auth');
+const { default: Validators } = require('./middleware/validation');
+
+const { SignInValidation,SignUpValidation,CommentValidation,PostValidation } = Validators
 
 const router = express.Router();
 
 /* User Routes */
-router.post('/login',Login);
+router.post('/login',SignInValidation,Login);
 
-router.post('/signup',SignUp);
+router.post('/signup',SignUpValidation,SignUp);
 
 router.post('/getInfo',GetUSer);
 
 /* Post Routes */
-router.post('/posts',authorizationCheck,CreatePost)
+router.post('/posts',authorizationCheck,PostValidation,CreatePost)
 
 router.get('/posts',authorizationCheck,GetAllPost)
 
-router.patch('/posts',authorizationCheck,UpdatePost)
-
 /* Comment Routes */
-router.post('/comments',authorizationCheck,CreateComment)
+router.post('/comments',authorizationCheck,CommentValidation,CreateComment)
 
 router.get('/comments',authorizationCheck,GetAllComments)
 
