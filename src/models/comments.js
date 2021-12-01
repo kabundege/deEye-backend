@@ -1,4 +1,16 @@
-module.exports = [
+const { Schema,model } = require("mongoose")
+
+const CommentsPayload = {
+    story_id: { type:'number', required:true },
+    creator_id: { type:'number', required:true },
+    content: { type:"string", required:true },
+}
+
+const CommentsSchema = new Schema(CommentsPayload,{ timestamps:true })
+
+const Comments = model('Comments',CommentsSchema)
+
+const dummyComments = [
     {
         id:3,
         content:'Pariatur non aliquip reprehenderit duis dolore incididunt qui qui. Quis sit sit consequat duis ullamco laborum. Aute ex nulla minim nisi irure proident.',
@@ -48,3 +60,5 @@ module.exports = [
         timestamp:1633054474863,
     },
 ]
+
+module.exports = { Comments,dummyComments };

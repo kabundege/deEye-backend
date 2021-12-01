@@ -1,24 +1,27 @@
-const routes = require('./routes');
-const express = require("express")
-const app = express();
+require('dotenv').config()
+require('./config') // db initialization
+const express = require('express')
+const { setSuccess, setError, send } = require('./helpers/utils')
+const routes = require('./routes')
+
+const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended:true }))
 
-app.get('/',(_,res)=>
-    res.status(200).json({
-        status: 200,
-        error: "Welcome To deEye",
-    })
-)
+// Welcome Route
+app.get('/',(_,res)=> {
+    setSuccess(200,"Welcome to DeEye BackBone")
+    return send(res);
+})
 
+// All Routes
 app.use(routes)
 
-app.use((_, res) =>
-  res.status(404).json({
-    status: 404,
-    error: ' PAGE NOT FOUND ',
-  })
-);
+// Not Found Route
+app.use((_,res)=>{ 
+    setError(404,'Page Not Found') 
+    return send(res)
+})
 
 module.exports = app;

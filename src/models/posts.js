@@ -1,4 +1,24 @@
-module.exports = [
+const { Schema,model } = require("mongoose")
+
+const PostsPayload = {
+    type: { type:"string", required:true },
+    name: { type:"string", required:true },
+    age: { type:'number', required:false },
+    image: { type:"string", required:true },
+    status: { type:"string", required:true },
+    gender: { type:"string", required:true },
+    location: { type:"string", required:false },
+    creator_id: { type:'number', required:true },
+    phoneNumber: { type:"string", required:true },
+    complexion: { type:"string", required:false },
+    nationality: { type:"string", required:false },
+}
+
+const PostsSchema = new Schema(PostsPayload,{ timestamps:true })
+
+const Posts = model('Posts',PostsSchema)
+
+dummyPosts = [
     {
         id: 1,
         image:'https://picsum.photos/200/300',
@@ -71,3 +91,5 @@ module.exports = [
         nationality:"Rwandan"
     },
 ]
+
+module.exports = { Posts,dummyPosts };

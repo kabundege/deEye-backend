@@ -1,4 +1,15 @@
-module.exports = [
+const { Schema,model } = require("mongoose")
+
+const UsersPayload = {
+    phoneNumber: { type: 'String', required: true },
+    name: { type:"string", required:true }
+}
+
+const UsersSchema = new Schema(UsersPayload,{ timestamps:true })
+
+const Users = model('Users',UsersSchema)
+
+const dummyUsers = [
     {
         id:1,
         phoneNumber:'0784824295',
@@ -9,3 +20,5 @@ module.exports = [
         name:'Eric Niyigena'
     },
 ]
+
+module.exports = { Users,dummyUsers };
