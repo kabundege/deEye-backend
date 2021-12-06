@@ -1,5 +1,5 @@
 import { Comment, Post, SignIn, SignUp } from "../helpers/schemas";
-const { setError,send } = require("../helpers/utils");
+const { errorResponse } = require("../helpers/utils");
 
 
 const handler = (req,res,schema) => {
@@ -16,13 +16,11 @@ const handler = (req,res,schema) => {
           error: 'Incorrect use of special characters',
           tip: `Please avoid characters that looks like = or /`,
         };
-        util.setError(400, Error);
-        return util.send(res);
+        return errorResponse(400, Error);
       }
   
       const Error = error.details[0].message.replace('/', '').replace(/"/g, '');
-      setError(400, Error);
-      return send(res);
+      return errorResponse(400, Error);
     }else{
       return ;
     }

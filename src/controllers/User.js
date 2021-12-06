@@ -1,23 +1,24 @@
-const { setError,setSuccess,send } = require('../helpers/utils');
+const { errorResponse,successResponse } = require('../helpers/utils');
 const { Users } = require('../models/user');
 
 class UserController {
 
     async GetUSer(req,res){
         const { phoneNumber } = req.body;
+        try{
         
-        await new Promise((resolve,reject)=>{
-            Users.find({ phoneNumber })
-            .then(data => {
-                if(!data){
-                    resolve(setError(404,'User Not Found, Register ?'))
-                }else{
-                    resolve(setSuccess(200,'Fetch Success',data));
-                }  
-            }).catch(er => reject(setError(500,er.message)))
-        }) 
+            const user = await Users.find({ phoneNumber })
     
-        return send(res)
+            if(user){
+                return successResponse(res,200,'Fetch Success',data);
+            }else{
+                return errorResponse(res,404,'User Not Found, Register ?')
+            }
+
+        }catch(er){
+            return errorResponse(res,500,err.message)
+        }
+    
     }
 
     async Login(req,res){
@@ -33,8 +34,7 @@ class UserController {
             const exists = await Users.find({ phoneNumber })
 
             if(!exists){
-                setError(404,'Phone Number Not Found')
-                return send(res);
+                return errorResponse(res,404,'Phone Number Not Found')
             }
 
             /**
@@ -42,11 +42,9 @@ class UserController {
              * with the payment Schema
              */
 
-            setSuccess(200,'LogIn Successfuly',exists)
-            return send(res)
+            return successResponse(res,200,'LogIn Successfuly',exists)
         }catch(err){
-            setError(500,err.message)
-            return send(res)
+            return errorResponse(res,500,err.message)
         }
     }
 
@@ -64,8 +62,7 @@ class UserController {
             const exists = await Users.find({ phoneNumber })
 
             if(exists){
-                setError(403,'PhoneNumber Already exist')
-                return send(res);
+                return errorResponse(res,403,'PhoneNumber Already exist')
             }
 
             /**
@@ -74,11 +71,9 @@ class UserController {
              */
 
             const newUser = await new Users(req.body).save();
-            setSuccess(201,'Sign Up Successfuly',newUser)
-            return send(res)
+            return successResponse(res,201,'Sign Up Successfuly',newUser)
         }catch(err){
-            setError(500,err.message)
-            return send(res)
+            return errorResponse(res,500,err.message)
         }
     }
 }

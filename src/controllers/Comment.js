@@ -1,12 +1,11 @@
-import { setError,setSuccess,send } from '../helpers/utils'
+import { errorResponse,res,successResponse,send } from '../helpers/utils'
 import { Comments } from '../models/comments';
 
 class CommentController {
 
     async GetAllComments(_,res){
         const comments = await Comments.find()
-        setSuccess(200,'Fetch Success',comments)
-        return send(res)
+        return successResponse(res,200,'Fetch Success',comments)
     }
 
     async CreateComment(req,res){        
@@ -17,11 +16,11 @@ class CommentController {
              */
 
             const newComment = await new Comments(req.body).save();
-            setSuccess(201,'Comment Created Successfuly',newComment)
-            return send(res)
+            return successResponse(res,201,'Comment Created Successfuly',newComment)
+
         }catch(err){
-            setError(500,err.message)
-            return send(res)
+            return errorResponse(res,500,err.message)
+
         }
     }
 

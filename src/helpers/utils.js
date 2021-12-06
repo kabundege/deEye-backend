@@ -1,34 +1,16 @@
-class Util {
-  constructor() {
-    this.statusCode = null;
-    this.type = null;
-    this.data = null;
-    this.message = null;
-  }
-
-  setSuccess(statusCode, message, data) {
-    this.statusCode = statusCode;
-    this.message = message;
-    this.data = data;
-    this.type = 'success';
-  }
-
-  setError(statusCode, message) {
-    this.statusCode = statusCode;
-    this.message = message;
-    this.type = 'error';
-  }
-
-  send(res) {
-    const { statusCode,message,data,type } = this;
-    const result = { statusCode,message,data };
-    
-    if (type === 'success') {
-      delete result.data;
-    }
-    
-    return res.status(statusCode).json(result);
-  }
+const response = (res,status,payload) =>{
+  return res.status(status).json({payload})
 }
 
-module.exports = new Util();
+const successResponse = (res,status,message,data) => {
+  const payload = { status,message,data }
+  return response(res,status,payload)
+}
+
+const errorResponse = (res,status,error) => {
+  const payload = { status,error }
+  return response(res,status,payload)
+}
+
+
+module.exports = { successResponse,errorResponse }

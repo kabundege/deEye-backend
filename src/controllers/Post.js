@@ -1,4 +1,4 @@
-const { setError,setSuccess,send } = require('../helpers/utils');
+const { errorResponse,res,successResponse } = require('../helpers/utils');
 const Posts = require('../models/posts');
 
 class PostController {
@@ -13,12 +13,9 @@ class PostController {
 
             
             const posts = await Posts.find();
-            console.log("========================",posts)
-            setSuccess(200,'Fetch Success',posts)
-            return send(res)
+            return successResponse(res,200,'Fetch Success',posts)
         }catch(err){
-            setError(500,err.message)
-            return send(res)
+            return errorResponse(res,500,err.message)
         }
     }
 
@@ -31,11 +28,9 @@ class PostController {
              */
 
             const newPost = await new Posts(req.body).save();
-            setSuccess(201,'Post Created Successfuly',newPost)
-            return send(res)
+            return successResponse(res,201,'Post Created Successfuly',newPost)
         }catch(err){
-            setError(500,err.message)
-            return send(res)
+            return errorResponse(res,500,err.message)
         }
     }
 }
