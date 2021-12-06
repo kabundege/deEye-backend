@@ -4,34 +4,34 @@ const { Users } = require('../models/user');
 class UserController {
 
     async GetUSer(req,res){
-        const { phoneNumber } = req.body;
+        const { phone_number } = req.body;
         try{
         
-            const user = await Users.find({ phoneNumber })
+            const user = await Users.findOne({ phone_number })
     
             if(user){
-                return successResponse(res,200,'Fetch Success',data);
+                return successResponse(res,200,'Fetch Success',user);
             }else{
                 return errorResponse(res,404,'User Not Found, Register ?')
             }
 
-        }catch(er){
+        }catch(err){
             return errorResponse(res,500,err.message)
         }
     
     }
 
     async Login(req,res){
-        const { phoneNumber }  = req.body;
+        const { phone_number }  = req.body;
 
         try {
             
             /**
-             * Check if the Provided PhoneNumber
+             * Check if the Provided Phone_Number
              * is not already registered for
              */
 
-            const exists = await Users.find({ phoneNumber })
+            const exists = await Users.findOne({ phone_number })
 
             if(!exists){
                 return errorResponse(res,404,'Phone Number Not Found')
@@ -50,19 +50,19 @@ class UserController {
 
     async SignUp(req,res){
 
-        const { phoneNumber }  = req.body;
+        const { phone_number }  = req.body;
 
         try {
             
             /**
-             * Check if the Provided PhoneNumber
+             * Check if the Provided Phone_Number
              * is not already registered for
              */
 
-            const exists = await Users.find({ phoneNumber })
+            const exists = await Users.findOne({ phone_number })
 
-            if(exists){
-                return errorResponse(res,403,'PhoneNumber Already exist')
+            if(!exists){
+                return errorResponse(res,403,'Phone_Number Already exist')
             }
 
             /**

@@ -16,13 +16,13 @@ const handler = (req,res,schema) => {
           error: 'Incorrect use of special characters',
           tip: `Please avoid characters that looks like = or /`,
         };
-        return errorResponse(400, Error);
+        return errorResponse(res,400, Error);
       }
   
       const Error = error.details[0].message.replace('/', '').replace(/"/g, '');
-      return errorResponse(400, Error);
+      return errorResponse(res,400, Error);
     }else{
-      return ;
+      return 1;
     }
          
 }

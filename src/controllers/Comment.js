@@ -1,5 +1,5 @@
-import { errorResponse,res,successResponse,send } from '../helpers/utils'
-import { Comments } from '../models/comments';
+const { errorResponse,successResponse } = require('../helpers/utils');
+const { Comments } = require('../models/comments');
 
 class CommentController {
 
@@ -26,4 +26,4 @@ class CommentController {
 
 }
 
-module.exports = new CommentController()
+module.exports =  new CommentController()

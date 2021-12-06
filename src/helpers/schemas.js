@@ -2,13 +2,13 @@ const Joi = require('@hapi/joi');
 
 export const SignIn = Joi.object({
     password: Joi.string().required(),
-    phonenumber: Joi.string().required(),
+    phone_number: Joi.string().required(),
 });
 
 export const SignUp = Joi.object({
     password: Joi.string().required(),
-    phonenumber: Joi.string().required(),
-    name: Joi.string().pattern(/^[a-zA-Z0-9 *]{3,25}$/).required(),
+    phone_number: Joi.string().required(),
+    name: Joi.string().required(),
 });
 
 export const Post = Joi.object({
@@ -23,7 +23,7 @@ export const Post = Joi.object({
     status: Joi.string().required(),
     service: Joi.number().required(), 
     creator_id: Joi.number().required(), 
-    phoneNumber: Joi.string().required(),
+    phone_number: Joi.string().required(),
 });
 
 export const Comment = Joi.object({ 

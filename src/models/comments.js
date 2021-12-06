@@ -18,7 +18,7 @@ const dummyComments = [
         creator_id:1,
         creator:{
             id:1,
-            phoneNumber:'0784824295',
+            phone_number:'0784824295',
             name:'Christophe K. Kwizera'
         },
         timestamp:Date.now(),
@@ -30,7 +30,7 @@ const dummyComments = [
         creator_id:2,
         creator:{
             id:2,
-            phoneNumber:'0781234567',
+            phone_number:'0781234567',
             name:'Eric Niyigena'
         },
         timestamp:1636054404863,
@@ -42,7 +42,7 @@ const dummyComments = [
         creator_id:1,
         creator:{
             id:1,
-            phoneNumber:'0784824295',
+            phone_number:'0784824295',
             name:'Christophe k. Kwizera'
         },
         timestamp:1636050474863,
@@ -54,7 +54,7 @@ const dummyComments = [
         creator_id:1,
         creator:{
             id:1,
-            phoneNumber:'0784824295',
+            phone_number:'0784824295',
             name:'Christophe k. Kwizera'
         },
         timestamp:1633054474863,

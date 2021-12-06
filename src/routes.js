@@ -1,5 +1,5 @@
 const express = require('express');
-const { GetAllComments, CreateComment } = require('./controllers/Comment');
+const { GetAllComments,CreateComment }= require('./controllers/Comment');
 const { CreatePost, GetAllPost } = require('./controllers/Post');
 const { Login, SignUp, GetUSer } = require('./controllers/User');
 const authorizationCheck = require('./middleware/auth');
