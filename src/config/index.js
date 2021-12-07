@@ -1,4 +1,8 @@
+const Vonage = require('@vonage/server-sdk');
 const mongoose = require('mongoose');
+
+const { apiSecret,apiKey } = process.env
+
 
 // mongoose.Promise = require('q')
 
@@ -13,4 +17,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 })
 .catch((er) => console.log("an error occured when connect to the DB"));
 
-module.exports = { mongoose,Is_DB_Ready };
+const vonage = new Vonage({ apiKey,apiSecret })
+
+module.exports = { mongoose,Is_DB_Ready,vonage };

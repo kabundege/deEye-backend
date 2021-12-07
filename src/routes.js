@@ -1,7 +1,7 @@
 const express = require('express');
 const { GetAllComments,CreateComment }= require('./controllers/Comment');
 const { CreatePost, GetAllPost } = require('./controllers/Post');
-const { Login, SignUp, GetUSer } = require('./controllers/User');
+const { Login, SignUp, GetUSer, SendSms } = require('./controllers/User');
 const { errorResponse, successResponse } = require('./helpers/utils');
 const authorizationCheck = require('./middleware/auth');
 const { default: Validators } = require('./middleware/validation');
@@ -28,9 +28,6 @@ router.post('/comments',authorizationCheck,CommentValidation,CreateComment)
 router.get('/comments',authorizationCheck,GetAllComments)
 
 /** SMS Route */
-router.post('/sms',async (req,res)=>{
-    
-    return res.end();
-})
+router.post('/sms',authorizationCheck,SendSms)
 
 module.exports = router;

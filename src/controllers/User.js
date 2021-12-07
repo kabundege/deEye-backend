@@ -1,7 +1,32 @@
 const { errorResponse,successResponse } = require('../helpers/utils');
 const { Users } = require('../models/user');
+const { vonage } = require('../config')
 
 class UserController {
+
+    async SendSms(req,res){
+        const { to } = req.body;
+
+        const user = await Users.findOne({ phone_number:from })
+
+        const from = `${user.phone_number}`
+        const text = ` ${user.name} has some helpful info about your case, callBack at your early convenience.`
+
+        new Promise((resolve,reject)=>{
+            vonage.message.sendSms(from, to, text, (err, responseData) => {
+                if (err) {
+                    reject(errorResponse(res,500,`Message failed with error: ${err.messages}`))
+                } else {
+                    if(responseData.messages[0]['status'] === "0") {
+                        resolve(successResponse(res,200,"Message sent successfully.",{}))
+                    } else {
+                        reject(errorResponse(res,500,`Message failed with error: ${responseData.messages[0]['error-text']}`))
+                    }
+                }
+            })
+        })
+        return res.end();
+    }
 
     async GetUSer(req,res){
         const { phone_number } = req.body;
