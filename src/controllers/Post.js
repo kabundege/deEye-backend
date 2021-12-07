@@ -1,5 +1,5 @@
 const { errorResponse,res,successResponse } = require('../helpers/utils');
-const Posts = require('../models/posts');
+const { Posts,dummyPosts } = require('../models/posts');
 
 class PostController {
 
@@ -13,7 +13,7 @@ class PostController {
 
             
             const posts = await Posts.find();
-            return successResponse(res,200,'Fetch Success',posts)
+            return successResponse(res,200,'Fetch Success',posts.concat(dummyPosts))
         }catch(err){
             return errorResponse(res,500,err.message)
         }

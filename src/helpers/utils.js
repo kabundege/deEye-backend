@@ -1,5 +1,5 @@
 const response = (res,status,payload) =>{
-  return res.status(status).json({payload})
+  return res.status(status).json(payload)
 }
 
 const successResponse = (res,status,message,data) => {

@@ -1,5 +1,10 @@
 GET http://localhost:2000/posts
-phone_number: +250784824295
+phone_number: 250784824295
+
+###
+GET http://localhost:2000/comments
+phone_number: 250784824295
+
 
 ###
 POST http://localhost:2000/signup
@@ -26,7 +31,13 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "password" : "kamunikwi",
     "phone_number":"250784824295",
-    "name":"Christophe K. Kwizera"
+}
+###
+POST http://localhost:2000/sms
+Accept: application/json
+Content-Type: application/json
+
+{
+    "phone_number":"250784824295",
 }
