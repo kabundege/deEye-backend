@@ -20,9 +20,6 @@ export const Post = Joi.object({
     name: Joi.string().required(),
     image: Joi.string().required(),
     gender: Joi.string().required(),
-    status: Joi.string().required(),
-    service: Joi.number().required(), 
-    creator_id: Joi.number().required(), 
     phone_number: Joi.string().required(),
 });
 

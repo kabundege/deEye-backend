@@ -10,16 +10,4 @@ const UsersSchema = new Schema(UsersPayload,{ timestamps:true })
 
 const Users = model('Users',UsersSchema)
 
-const dummyUsers = [
-    {
-        id:1,
-        phone_number:'0784824295',
-        name:'Christophe K. Kwizera'
-    },{
-        id:2,
-        phone_number:'0781234567',
-        name:'Eric Niyigena'
-    },
-]
-
 module.exports = { Users,UsersSchema };

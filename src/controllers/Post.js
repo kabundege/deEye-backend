@@ -1,5 +1,6 @@
 const { errorResponse,res,successResponse } = require('../helpers/utils');
 const { Posts,dummyPosts } = require('../models/posts');
+const path = require('path')
 
 class PostController {
 
@@ -26,7 +27,9 @@ class PostController {
              * Creates a new Payment 
              * with the payment Schema
              */
-
+            req.body.status = 'active';
+            req.body.creator_id = req.userData.id;
+            console.log(req.body)
             const newPost = await new Posts(req.body).save();
             return successResponse(res,201,'Post Created Successfuly',newPost)
         }catch(err){

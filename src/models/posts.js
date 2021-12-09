@@ -8,7 +8,7 @@ const PostsPayload = {
     status: { type:"string", required:true },
     gender: { type:"string", required:true },
     location: { type:"string", required:false },
-    creator_id: { type:'number', required:true },
+    creator_id: { type:'string', required:true },
     phone_number: { type:"string", required:true },
     complexion: { type:"string", required:false },
     nationality: { type:"string", required:false },

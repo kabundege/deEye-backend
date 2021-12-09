@@ -2,7 +2,7 @@ const express = require('express');
 const { GetAllComments,CreateComment }= require('./controllers/Comment');
 const { CreatePost, GetAllPost } = require('./controllers/Post');
 const { Login, SignUp, GetUSer, SendSms } = require('./controllers/User');
-const { errorResponse, successResponse } = require('./helpers/utils');
+const upload = require('./helpers/multer');
 const authorizationCheck = require('./middleware/auth');
 const { default: Validators } = require('./middleware/validation');
 
@@ -18,7 +18,12 @@ router.post('/signup',SignUpValidation,SignUp);
 router.post('/getInfo',GetUSer);
 
 /* Post Routes */
-router.post('/posts',authorizationCheck,PostValidation,CreatePost)
+router.post('/posts',
+    authorizationCheck,
+    upload.single('image'),
+    PostValidation,
+    CreatePost
+    )
 
 router.get('/posts',authorizationCheck,GetAllPost)
 
