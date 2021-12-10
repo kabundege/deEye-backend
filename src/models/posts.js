@@ -20,7 +20,7 @@ const Posts = model('Posts',PostsSchema)
 
 const dummyPosts = [
     {
-        id: 1,
+        "_id": "1",
         image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg0JBjn7SrY39W1IA4-UsZjtdWIFMNINnIew&usqp=CAU',
         name:'Allia Uwase',
         age:8,
@@ -34,7 +34,7 @@ const dummyPosts = [
         location:"Kigali, Rwanda",
         nationality:"Rwandan"
     },{
-        id: 2,
+        "_id": "2",
         image:'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBjaGlsZHxlbnwwfHwwfHw%3D&w=1000&q=80',
         name:'Boris Kalisa',
         age:15,
@@ -48,7 +48,7 @@ const dummyPosts = [
         location:"Kigali, Rwanda",
         nationality:"Rwandan"
     },{
-        id: 3,
+        "_id": "3",
         image:'https://i.pinimg.com/originals/31/50/05/315005b83169c65bfda81c7b2b25d18a.png',
         name:'Madi Previa',
         age:22,
@@ -62,7 +62,7 @@ const dummyPosts = [
         location:"Kigali, Rwanda",
         nationality:"Rwandan"
     },{
-        id: 4,
+        "_id": "4",
         image:'https://www.andynickerson.com/wp-content/uploads/2014/11/black-and-white-childrens-photography-900x600.jpg',
         name:'Jamal Morry',
         age:12,
@@ -76,7 +76,7 @@ const dummyPosts = [
         location:"Kigali, Rwanda",
         nationality:"Rwandan"
     },{
-        id: 5,
+        "_id": "5",
         image:'https://www.theresaolesenportraits.com/wp-content/uploads/2018/10/singapore-portrait-photographer-black-and-white.jpg',
         name:'Jogn Doe',
         age:20,

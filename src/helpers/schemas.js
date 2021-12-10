@@ -25,6 +25,6 @@ export const Post = Joi.object({
 
 export const Comment = Joi.object({ 
     content: Joi.string().required(),
-    story_id: Joi.number().required(), 
-    creator_id: Joi.number().required(),
+    story_id: Joi.string().required(), 
+    creator_id: Joi.string().required(),
 });

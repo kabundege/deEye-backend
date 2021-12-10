@@ -86,7 +86,7 @@ class UserController {
 
             const exists = await Users.findOne({ phone_number })
 
-            if(!exists){
+            if(exists){
                 return errorResponse(res,403,'Phone_Number Already exist')
             }
 

@@ -28,8 +28,7 @@ class PostController {
              * with the payment Schema
              */
             req.body.status = 'active';
-            req.body.creator_id = req.userData.id;
-            console.log(req.body)
+            req.body.creator_id = req.userData._id;
             const newPost = await new Posts(req.body).save();
             return successResponse(res,201,'Post Created Successfuly',newPost)
         }catch(err){
