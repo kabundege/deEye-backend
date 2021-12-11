@@ -3,6 +3,7 @@ const { Schema,model } = require("mongoose")
 const CommentsPayload = {
     story_id: { type:'string', required:true },
     creator_id: { type:'string', required:true },
+    creator_name: { type:'string', required:true },
     content: { type:"string", required:true },
 }
 

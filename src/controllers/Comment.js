@@ -26,6 +26,7 @@ class CommentController {
              * with the payment Schema
              */
 
+            req.body.creator_name = req.userData.name;
             const newComment = await new Comments(req.body).save();
             return successResponse(res,201,'Comment Created Successfuly',newComment)
 
