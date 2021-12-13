@@ -16,6 +16,7 @@ export const Post = Joi.object({
     location: Joi.string(),
     complexion: Joi.string(),
     nationality: Joi.string(),  
+    description: Joi.string(),  
     type: Joi.string().required(),
     name: Joi.string().required(),
     image: Joi.string().required(),

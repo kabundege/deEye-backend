@@ -12,6 +12,7 @@ const PostsPayload = {
     phone_number: { type:"string", required:true },
     complexion: { type:"string", required:false },
     nationality: { type:"string", required:false },
+    description: { type:"string", required:false },
 }
 
 const PostsSchema = new Schema(PostsPayload,{ timestamps:true })

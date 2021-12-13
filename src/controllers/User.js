@@ -101,6 +101,7 @@ class UserController {
             return errorResponse(res,500,err.message)
         }
     }
+    
 }
 
 module.exports = new UserController()
