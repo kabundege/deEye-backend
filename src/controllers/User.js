@@ -9,10 +9,10 @@ class UserController {
 
         const user = await Users.findOne({ phone_number:from })
 
-        const text = ` ${user.name} has some helpful info about your case, callBack at your early convenience.`
+        const text = ` ${user.name} has some helpful info about your case, callBack ${user.phone_number}`
 
-        new Promise((resolve,reject)=>{
-            vonage.message.sendSms(from, to, text, (err, responseData) => {
+        await new Promise((resolve,reject)=>{
+            vonage.message.sendSms('ChildFinder' ,to, text, (err, responseData) => {
                 if (err) {
                     reject(errorResponse(res,500,`Message failed with error: ${err.messages}`))
                 } else {
