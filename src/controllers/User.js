@@ -5,11 +5,10 @@ const { vonage } = require('../config')
 class UserController {
 
     async SendSms(req,res){
-        const { to } = req.body;
+        const { from,to } = req.body;
 
         const user = await Users.findOne({ phone_number:from })
 
-        const from = `${user.phone_number}`
         const text = ` ${user.name} has some helpful info about your case, callBack at your early convenience.`
 
         new Promise((resolve,reject)=>{
