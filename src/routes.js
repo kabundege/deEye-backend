@@ -1,6 +1,6 @@
 const express = require('express');
 const { GetAllComments,CreateComment }= require('./controllers/Comment');
-const { CreatePost, GetAllPost } = require('./controllers/Post');
+const { CreatePost, GetAllPost, ToggleCase } = require('./controllers/Post');
 const { Login, SignUp, GetUSer, SendSms } = require('./controllers/User');
 const upload = require('./helpers/multer');
 const authorizationCheck = require('./middleware/auth');
@@ -26,6 +26,7 @@ router.post('/posts',
     )
 
 router.get('/posts',authorizationCheck,GetAllPost)
+router.patch('/posts/:id',authorizationCheck,ToggleCase)
 
 /* Comment Routes */
 router.post('/comments',authorizationCheck,CommentValidation,CreateComment)

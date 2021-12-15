@@ -46,3 +46,13 @@ Content-Type: application/json
     "from":"250784824295",
     "to":"250784824295"
 }
+
+###
+PATCH  {{local}}/posts/61b8f995733add83002592aa
+Accept: application/json
+Content-Type: application/json
+phone_number: 0784824295
+
+{
+    "status": "closed"
+}
