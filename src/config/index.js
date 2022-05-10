@@ -15,7 +15,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     Is_DB_Ready = true;
     console.log('Connected to DB')
 })
-.catch((er) => console.log("an error occured when connect to the DB"));
+.catch((er) => console.log("an error occured when connect to the DB ",er));
 
 const vonage = new Vonage({ apiKey,apiSecret })
 
