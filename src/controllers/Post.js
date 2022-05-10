@@ -48,7 +48,7 @@ class PostController {
 
         const { status } = req.body
 
-        const newPost = await Posts.updateOne({ _id },{ $set: { status } })
+        await Posts.updateOne({ _id },{ $set: { status } })
         return successResponse(res,200,'Updated Succesfully',{ ...post,status })
     }
 }

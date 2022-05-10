@@ -34,6 +34,6 @@ router.post('/comments',authorizationCheck,CommentValidation,CreateComment)
 router.get('/comments',authorizationCheck,GetAllComments)
 
 /** SMS Route */
-router.post('/sms',authorizationCheck,SendSms)
+router.post('/sms',SendSms)
 
 module.exports = router;

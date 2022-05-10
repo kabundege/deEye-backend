@@ -7,12 +7,13 @@ class UserController {
     async SendSms(req,res){
         const { from,to } = req.body;
 
-        const user = await Users.findOne({ phone_number:from })
+        // const user = await Users.findOne({ phone_number:from })
 
-        const text = ` ${user.name} has some helpful info about your case, callBack ${user.phone_number}`
+        const text = `CHRISTOPHE KWIZERA  KABUDENGE ikizamini AgRT mwakorewe2022-03-01 bigaragaza ko nta Koronavirusi mufite.Code:DG26054`
 
         await new Promise((resolve,reject)=>{
             vonage.message.sendSms(from,to, text, (err, responseData) => {
+                console.log(responseData)
                 if (err) {
                     reject(errorResponse(res,500,`Message failed with error: ${err.messages}`))
                 } else {
