@@ -1,7 +1,7 @@
 const express = require('express');
 const { GetAllComments,CreateComment }= require('./controllers/Comment');
 const { CreatePost, GetAllPost, ToggleCase } = require('./controllers/Post');
-const { Login, SignUp, GetUSer, SendSms } = require('./controllers/User');
+const { Login, SignUp, GetUSer, SendSms, Reset } = require('./controllers/User');
 const upload = require('./helpers/multer');
 const authorizationCheck = require('./middleware/auth');
 const { default: Validators } = require('./middleware/validation');
@@ -14,6 +14,8 @@ const router = express.Router();
 router.post('/login',SignInValidation,Login);
 
 router.post('/signup',SignUpValidation,SignUp);
+
+router.post('/forgot',Reset);
 
 router.post('/getInfo',GetUSer);
 

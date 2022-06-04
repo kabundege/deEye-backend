@@ -43,8 +43,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "from":"RBC",
-    "to":"250784824295"
+    "from":"0784824295",
+    "to":"250783554564"
 }
 
 ###

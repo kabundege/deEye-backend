@@ -7,13 +7,13 @@ class UserController {
     async SendSms(req,res){
         const { from,to } = req.body;
 
-        // const user = await Users.findOne({ phone_number:from })
+        const user = await Users.findOne({ phone_number:from })
 
-        const text = `CHRISTOPHE KWIZERA  KABUDENGE ikizamini AgRT mwakorewe2022-03-01 bigaragaza ko nta Koronavirusi mufite.Code:DG26054`
+        const text = `${user.name} has some urgent information about your case, get intouch A.S.A.P at ${from}`
 
         await new Promise((resolve,reject)=>{
-            vonage.message.sendSms(from,to, text, (err, responseData) => {
-                console.log(responseData)
+            vonage.message.sendSms("Child Finder", to, text, (err, responseData) => {
+                // console.log(responseData)
                 if (err) {
                     reject(errorResponse(res,500,`Message failed with error: ${err.messages}`))
                 } else {
@@ -25,6 +25,7 @@ class UserController {
                 }
             })
         })
+
         return res.end();
     }
 
@@ -47,6 +48,37 @@ class UserController {
     }
 
     async Login(req,res){
+        const { phone_number,password }  = req.body;
+
+        try {
+            
+            /**
+             * Check if the Provided Phone_Number
+             * is not already registered for
+             */
+
+            const exists = await Users.findOne({ phone_number })
+
+            if(!exists){
+                return errorResponse(res,404,'Phone Number Not Found')
+            }
+
+            if(password !== exists.password){
+                return errorResponse(res,400,'Invalid Credentials')
+            }
+
+            /**
+             * Creates a new Payment 
+             * with the payment Schema
+             */
+
+            return successResponse(res,200,'LogIn Successfuly',exists)
+        }catch(err){
+            return errorResponse(res,500,err.message)
+        }
+    }
+
+    async Reset(req,res){
         const { phone_number }  = req.body;
 
         try {
